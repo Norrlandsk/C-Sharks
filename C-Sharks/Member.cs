@@ -19,7 +19,7 @@ namespace C_Sharks
         private string foodPreference;
         private string favoriteAnimal;
         private string driveInProgramming;
-        private List<Member> memberList = new List<Member>();
+        
 
 
         //Constructor
@@ -35,7 +35,8 @@ namespace C_Sharks
             string favoriteSeason,
             string foodPreference,
             string favoriteAnimal,
-            string driveInProgramming)
+            string driveInProgramming
+            )
         {
             this.name = name;
             this.civilStatus = civilStatus;
@@ -65,123 +66,128 @@ namespace C_Sharks
         public string FoodPreference { get => foodPreference; set => foodPreference = value; }
         public string FavoriteAnimal { get => favoriteAnimal; set => favoriteAnimal = value; }
         public string DriveInProgramming { get => driveInProgramming; set => driveInProgramming = value; }
-        public List<Member> MemberList { get => memberList; set => memberList = value; }
+        
+        //Method for creating objects for all group members and returning List containing objects
+        public static List<Member> CreateMemberList()
+        {
+            Member Tove = new Member(
+               "Tove Seger",
+               "Gift",
+               "December",
+               "Villa",
+               28,
+               "Löpning",
+               "Saltlakrits",
+               "Biomedicin, inriktning: fysisk träning",
+               "Sommar",
+               "Vegetariskt",
+               "Hund",
+               "Viljan att skapa en kreativ och intellektuell tillvaro, oberoende av fasta klockslag"
+               );
 
-        Member Tove = new Member(
-            "Tove Seger",
-            "Gift",
-            "December",
-            "Villa",
-            28,
-            "Löpning",
-            "Saltlakrits",
-            "Biomedicin, inriktning: fysisk träning",
-            "Sommar",
-            "Vegetariskt",
-            "Hund",
-            "Viljan att skapa en kreativ och intellektuell tillvaro, oberoende av fasta klockslag"
-            );
+            Member Oskar = new Member(
+                "Oskar Kling",
+                "Sambo",
+                "November",
+                "Lägenhet",
+                30,
+                "Datorspel",
+                "Kexchoklad",
+                "Ett år Ekonomi. Ett år Software Engineer",
+                "Höst",
+                "Kött, helst biff",
+                "Hund och katt",
+                "Kreativt, roligt, kontroll och problemlösning");
 
-        Member Oskar = new Member(
-            "Oskar Kling",
-            "Sambo",
-            "November",
-            "Lägenhet",
-            30,
-            "Datorspel",
-            "Kexchoklad",
-            "Ett år Ekonomi. Ett år Software Engineer",
-            "Höst",
-            "Kött, helst biff",
-            "Hund och katt",
-            "Kreativt, roligt, kontroll och problemlösning");
+            Member Elias = new Member(
+                "Elias Hjelm",
+                "Sambo",
+                "Augusti",
+                "Lägenhet",
+                22,
+                "Datorspel",
+                "Choklad",
+                "Halvår Interaktionsdesigner",
+                "Sommar",
+                "Veganskt",
+                "Hund",
+                "Att få arbeta med något som är kreativt och som jag alltid kan utvecklas inom");
 
-        Member Elias = new Member(
-            "Elias Hjelm",
-            "Sambo",
-            "Augusti",
-            "Lägenhet",
-            22,
-            "Datorspel",
-            "Choklad",
-            "Halvår Interaktionsdesigner",
-            "Sommar",
-            "Veganskt",
-            "Hund",
-            "Att få arbeta med något som är kreativt och som jag alltid kan utvecklas inom");
+            Member Viktor = new Member(
+                 "Viktor Salmberg",
+                 "Singel",
+                 "Januari",
+                 "Lägenhet",
+                 30,
+                 "Spela gitarr",
+                 "Choklad",
+                 "Arabiska",
+                 "Höst",
+                 "Vegetariskt, och bacon",
+                 "Katt",
+                 "Kicken att förstå nya koncept och möjligheten till ett utvecklande arbetsliv.");
 
-        Member Viktor = new Member(
-             "Viktor Salmberg",
-             "Singel",
-             "Januari",
-             "Lägenhet",
-             30,
-             "Spela gitarr",
-             "Choklad",
-             "Arabiska",
-             "Höst",
-             "Vegetariskt, och bacon",
-             "Katt",
-             "Kicken att förstå nya koncept och möjligheten till ett utvecklande arbetsliv.");
+            Member Johan = new Member(
+                "Johan Rohdin",
+                "Sambo",
+                "Mars",
+                "Lägenhet",
+                27,
+                "Poker och fotboll",
+                "Blandgodis",
+                "Två år Nätverksdrift",
+                "Vinter",
+                "Pasta",
+                "Hund",
+                "Egna arbetstider, roligt och intressant");
 
-        Member Johan = new Member(
-            "Johan Rohdin",
-            "Sambo",
-            "Mars",
-            "Lägenhet",
-            27,
-            "Poker och fotboll",
-            "Blandgodis",
-            "Två år Nätverksdrift",
-            "Vinter",
-            "Pasta",
-            "Hund",
-            "Egna arbetstider, roligt och intressant");
+            Member Christopher = new Member(
+                "Christopher Brizet",
+                "Sambo",
+                "September",
+                "Villa",
+                35,
+                "Gitarr, spel, läsa",
+                "Sötlakrits",
+                "Ett år Installationstekniker",
+                "Höst",
+                "Stinky french cheeses",
+                "Korp",
+                "Planera, skapa och ett enormt svängrum för kreativitet (plus fantasin om att erövra världen)");
 
-        Member Christopher = new Member(
-            "Christopher Brizet",
-            "Sambo",
-            "September",
-            "Villa",
-            35,
-            "Gitarr, spel, läsa",
-            "Sötlakrits",
-            "Ett år Installationstekniker",
-            "Höst",
-            "Stinky french cheeses",
-            "Korp",
-            "Planera, skapa och ett enormt svängrum för kreativitet (plus fantasin om att erövra världen)");
+            Member Robert = new Member(
+                "Robert Bunjako",
+                "Gift",
+                "November",
+                "Lägenhet",
+                35,
+                "Fiska",
+                "Mjölkchoklad",
+                "IT-Säkerhet",
+                "Sommar",
+                "Pasta",
+                "Hund",
+                "Kombinera tidigare utbildning med nya kunskaper för att släppa los den kreativa kraften och styra/forma egna framtiden"
+                );
 
-        Member Robert = new Member(
-            "Robert Bunjako",
-            "Gift",
-            "November",
-            "Lägenhet",
-            35,
-            "Fiska",
-            "Mjölkchoklad",
-            "IT-Säkerhet",
-            "Sommar",
-            "Pasta",
-            "Hund",
-            "Kombinera tidigare utbildning med nya kunskaper för att släppa los den kreativa kraften och styra/forma egna framtiden"
-            );
-
-        Member Fisnik = new Member(
-              "Fisnik Balija",
-              "Flickvän",
-              "Februari",
-              "Villa",
-              32,
-              "Fotboll",
-              "Choklad",
-              "Masterexamen i Geologi",
-              "Sommar",
-              "Allätare, föredrar kött",
-              "Hund",
-              "Fascineras av hur något så enkelt men samtidigt komplicerat kan skapa något kraftfullt och användbart. Vidare så är programmering oerhört utmanande, spännande och framförallt roligt!"
-              );
-
+            Member Fisnik = new Member(
+                  "Fisnik Balija",
+                  "Flickvän",
+                  "Februari",
+                  "Villa",
+                  32,
+                  "Fotboll",
+                  "Choklad",
+                  "Masterexamen i Geologi",
+                  "Sommar",
+                  "Allätare, föredrar kött",
+                  "Hund",
+                  "Fascineras av hur något så enkelt men samtidigt komplicerat kan skapa något kraftfullt och användbart. Vidare så är programmering oerhört utmanande, spännande och framförallt roligt!"
+                  );
+            List<Member> memberList = new List<Member>() { Tove, Oskar, Elias, Viktor, Johan, Christopher, Robert, Fisnik };
+            //memberList.Sort();
+            return memberList;
+        }
 
 
     }
