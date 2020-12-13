@@ -66,10 +66,10 @@ namespace C_Sharks
         public string FoodPreference { get => foodPreference; set => foodPreference = value; }
         public string FavoriteAnimal { get => favoriteAnimal; set => favoriteAnimal = value; }
         public string DriveInProgramming { get => driveInProgramming; set => driveInProgramming = value; }
-        
-       
-        
 
-
+        internal static void Sort(Func<object, object, int> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
