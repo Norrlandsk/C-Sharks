@@ -2,43 +2,96 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Threading;
-//using System.Linq;
+using System.Web;
+
 
 namespace C_Sharks
 {
 
     class Program
     {
-        public static List<Member> operativeMemberList = MemberList();
-
+        private static List<Member> operativeMemberList = MemberList();
 
         static void Main(string[] args)
         {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.Clear();
             Setup();
 
+
+        }
+        private static void WelcomeMessage()
+        {
+            string title = @"
+                      _____ _          
+                     |_   _| |         
+                       | | | |__   ___ 
+                       | | | '_ \ / _ \
+                       | | | | | |  __/
+                       \_/ |_| |_|\___|
+                                       
+                                       
+        _____       _____ _                _        
+       /  __ \     /  ___| |              | |       
+       | /  \/_____\ `--.| |__   __ _ _ __| | _____ 
+       | |  |______|`--. \ '_ \ / _` | '__| |/ / __|
+       | \__/\     /\__/ / | | | (_| | |  |   <\__ \
+        \____/     \____/|_| |_|\__,_|_|  |_|\_\___/
+                                                    
+                                                    
+            ___           _     _                
+           / _ \         | |   (_)               
+          / /_\ \_ __ ___| |__  ___   _____  ___ 
+          |  _  | '__/ __| '_ \| \ \ / / _ \/ __|
+          | | | | | | (__| | | | |\ V /  __/\__ \
+          \_| |_/_|  \___|_| |_|_| \_/ \___||___/
+                                                 ";
+            Console.WriteLine(title);
+            
+            Console.WriteLine("Press enter to continue...");
+            Console.ReadKey();
+            Console.Clear();
+        }
+        private static void ListAllFields()
+        {
+            foreach (var item in operativeMemberList)
+            {
+
+                Console.WriteLine($"{item}\n");
+                Console.WriteLine($"{item.ToString()}\n");
+
+            }
         }
 
         //Method for starting up the application
         public static void Setup()
         {
-            Console.WriteLine(">Welcome to The C-Sharks Archives!\n\n");
-            /* bool incorrectPassword = true;
-             while (incorrectPassword)
+            /*Console.WriteLine(">Welcome to The C-Sharks Archives!\n\n");
+             bool correctPassWordGiven = false;
+             while (!correctPassWordGiven)
              {
                  Console.Write($">Input password:");
                  string passWord = Console.ReadLine();
-                 if (passWord == "C-Sharks")
-                 {
+                if (passWord == "C-Sharks")
+                {
 
-                     incorrectPassword = false;
-                 }
-                 else
-                     Console.WriteLine(">Incorrect password!\n\n");
+                    correctPassWordGiven = true;
+                }
+                else
+                {
+                    Console.WriteLine(">Incorrect password!\n\n");
+                    Console.Clear();
+                }
 
-             }*/
+             }
+            Console.WriteLine("Correct password!");*/
+            WelcomeMessage();
+
             bool isRunning = true;
             while (isRunning)
             {
+
                 Console.WriteLine(">What would you like to do now?\n\n" +
                     ">[1] Show member list\n" +
                     ">[2] Show all members info\n" +
@@ -50,7 +103,7 @@ namespace C_Sharks
                 switch (menuChoice)
                 {
                     case "1":
-                        ListAllMembers();
+                        ListAllMembersWithComma();
                         break;
                     case "2":
                         ListAllMemberInfo();
@@ -66,33 +119,100 @@ namespace C_Sharks
                         DeleteMember();
                         break;
                     case "6":
-                        Console.WriteLine("Shutting down the application...");
+                        Console.WriteLine(">Shutting down the application...");
                         isRunning = false;
                         break;
                     default:
-                        Console.WriteLine("Invalid input!");
+                        Console.WriteLine(">Invalid input!");
 
                         break;
 
+
+                }
+
+
+
+            }
+        }
+        //Method for printing out all Name fields in class Member
+        private static void ListAllMembersWithComma()
+        {
+            for (int i = 0; i < operativeMemberList.Count; i++)
+            {
+                if (i == operativeMemberList.Count - 1)
+                {
+                    Console.Write($"{operativeMemberList[i].Name}");
+                }
+                else
+                {
+                    Console.Write($"{operativeMemberList[i].Name}, ");
                 }
             }
         }
-
-        public static List<Member> DeleteMember()
+        //Method for printing out all fields of all objects in class Member
+        public static void ListAllMemberInfo()
         {
-            Console.WriteLine("Who do you wish to delete? :(");
+            foreach (var item in operativeMemberList)
+            {
+                Console.Write(
+                    $">Name: {item.Name}\n" +
+                    $">Civil status: {item.CivilStatus}\n" +
+                    $">Type of Accomodation: {item.TypeOfAccomodation}\n" +
+                    $">Age: {item.Age}\n" +
+                    $">Favorite hobby: {item.FavoriteHobby}\n" +
+                    $">Favorite candy: {item.FavoriteCandy}\n" +
+                    $">Post High School Education: {item.PostHighSchoolEducation}\n" +
+                    $">Favorite season: {item.FavoriteSeason}\n" +
+                    $">Food preferences: {item.FoodPreference}\n" +
+                    $">Favorite animal: {item.FavoriteAnimal}\n" +
+                    $">Drive in programming: {item.DriveInProgramming}\n" +
+                    "\n\n"
+                    );
+            }
+        }
+
+        public static void SpecificMemberInfo()
+        {
+
+            Console.WriteLine("Which member would you like to know more about?");
 
             for (int i = 0; i < operativeMemberList.Count; i++)
             {
                 Console.WriteLine($"[{i + 1}] {operativeMemberList[i].Name} ");
             }
-            int menuChoiceDeleteMember = Convert.ToInt32(Console.ReadLine());
+            int menuChoiceSpecificMember = Convert.ToInt32(Console.ReadLine());
+            switch (menuChoiceSpecificMember)
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    Console.Write(
+                $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
+                $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
+                $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
+                $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
+                $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
+                $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
+                $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
+                $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
+                $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
+                $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
+                $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
+                "\n\n"
+                );
+                    break;
 
-            operativeMemberList.RemoveAt(menuChoiceDeleteMember - 1);
-            return operativeMemberList;
+                default:
+                    Console.WriteLine("Invalid input!");
+                    break;
+            }
 
         }
-
         private static void ListSpecificInfo()
         {
             Console.WriteLine($"What information would you like to list?\n\n" +
@@ -182,177 +302,20 @@ namespace C_Sharks
                     break;
             }
         }
-
-        public static void SpecificMemberInfo()
+        public static List<Member> DeleteMember()
         {
-
-            Console.WriteLine("Which member would you like to know more about?");
+            Console.WriteLine("Who do you wish to delete? :(");
 
             for (int i = 0; i < operativeMemberList.Count; i++)
             {
                 Console.WriteLine($"[{i + 1}] {operativeMemberList[i].Name} ");
             }
-            int menuChoiceSpecificMember = Convert.ToInt32(Console.ReadLine());
-            switch (menuChoiceSpecificMember)
-            {
-                case 1:
-                    Console.Write(
-                $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-                $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-                $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-                $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-                $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-                $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-                $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-                $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-                $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-                $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-                $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-                "\n\n"
-                );
-                    break;
-                case 2:
+            int menuChoiceDeleteMember = Convert.ToInt32(Console.ReadLine());
 
-                    Console.Write(
-              $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-              $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-              $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-              $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-              $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-              $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-              $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-              $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-              $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-              $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-              $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-              "\n\n"
-                    );
-                    break;
-                case 3:
-                    Console.Write(
-                $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-                $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-                $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-                $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-                $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-                $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-                $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-                $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-                $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-                $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-                $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-                "\n\n"
-                );
-                    break;
-                case 4:
-                    Console.Write(
-                 $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-                 $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-                 $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-                 $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-                 $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-                 $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-                 $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-                 $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-                 $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-                 $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-                 $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-                 "\n\n"
-                 );
-                    break;
-                case 5:
-                    Console.Write(
-             $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-             $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-             $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-             $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-             $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-             $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-             $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-             $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-             $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-             $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-             $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-             "\n\n"
-
-             );
-                    break;
-                case 6:
-                    Console.Write(
-                $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-                $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-                $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-                $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-                $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-                $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-                $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-                $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-                $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-                $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-                $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-                "\n\n"
-                );
-                    break;
-                case 7:
-                    Console.Write(
-                $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-                $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-                $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-                $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-                $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-                $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-                $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-                $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-                $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-                $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-                $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-                "\n\n"
-                );
-                    break;
-                case 8:
-                    Console.Write(
-                $">Name: {operativeMemberList[menuChoiceSpecificMember - 1].Name}\n" +
-                $">Civil status:{operativeMemberList[menuChoiceSpecificMember - 1].CivilStatus}\n" +
-                $">Type of Accomodation: {operativeMemberList[menuChoiceSpecificMember - 1].TypeOfAccomodation}\n" +
-                $">Age: {operativeMemberList[menuChoiceSpecificMember - 1].Age}\n" +
-                $">Favorite hobby:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteHobby}\n" +
-                $">Favorite candy:{operativeMemberList[menuChoiceSpecificMember - 1].FavoriteCandy}\n" +
-                $">Post High School Education:{operativeMemberList[menuChoiceSpecificMember - 1].PostHighSchoolEducation}\n" +
-                $">Favorite season: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteSeason}\n" +
-                $">Food preferences: {operativeMemberList[menuChoiceSpecificMember - 1].FoodPreference}\n" +
-                $">Favorite animal: {operativeMemberList[menuChoiceSpecificMember - 1].FavoriteAnimal}\n" +
-                $">Drive in programming: {operativeMemberList[menuChoiceSpecificMember - 1].DriveInProgramming}\n" +
-                "\n\n"
-                );
-                    break;
-                default:
-                    Console.WriteLine("Invalid input!");
-                    break;
-            }
+            operativeMemberList.RemoveAt(menuChoiceDeleteMember - 1);
+            return operativeMemberList;
 
         }
-
-        public static void ListAllMemberInfo()
-        {
-            foreach (var item in operativeMemberList)
-            {
-                Console.Write(
-                    $">Name: {item.Name}\n" +
-                    $">Civil status: {item.CivilStatus}\n" +
-                    $">Type of Accomodation: {item.TypeOfAccomodation}\n" +
-                    $">Age: {item.Age}\n" +
-                    $">Favorite hobby: {item.FavoriteHobby}\n" +
-                    $">Favorite candy: {item.FavoriteCandy}\n" +
-                    $">Post High School Education: {item.PostHighSchoolEducation}\n" +
-                    $">Favorite season: {item.FavoriteSeason}\n" +
-                    $">Food preferences: {item.FoodPreference}\n" +
-                    $">Favorite animal: {item.FavoriteAnimal}\n" +
-                    $">Drive in programming: {item.DriveInProgramming}\n" +
-                    "\n\n"
-                    );
-            }
-        }
-
         public static void ListAllMembers()
         {
             foreach (var item in operativeMemberList)
@@ -360,7 +323,6 @@ namespace C_Sharks
                 Console.WriteLine($"{item.Name}\n ");
             }
         }
-
         //Method for creating objects for all group members and returning List containing objects
         public static List<Member> MemberList()
         {
@@ -480,10 +442,11 @@ namespace C_Sharks
                   );
             List<Member> memberList = new List<Member>() { Tove, Oskar, Elias, Viktor, Johan, Christopher, Robert, Fisnik };
 
-            memberList.Sort((x, y) => x.Age.CompareTo(y.Age));
-            
+            memberList.Sort((x, y) => x.Name.CompareTo(y.Name));
+
             return memberList;
         }
+
 
     }
 }

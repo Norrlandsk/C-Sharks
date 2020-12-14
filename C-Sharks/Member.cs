@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace C_Sharks
 {
@@ -19,24 +20,24 @@ namespace C_Sharks
         private string foodPreference;
         private string favoriteAnimal;
         private string driveInProgramming;
-        
+
 
 
         //Constructor
         public Member(
-            string name,
-            string civilStatus,
-            string monthOfBirth,
-            string typeOfAccomodation,
-            int age,
-            string favoriteHobby,
-            string favoriteCandy,
-            string postHighSchoolEducation,
-            string favoriteSeason,
-            string foodPreference,
-            string favoriteAnimal,
-            string driveInProgramming
-            )
+             string name,
+             string civilStatus,
+             string monthOfBirth,
+             string typeOfAccomodation,
+             int age,
+             string favoriteHobby,
+             string favoriteCandy,
+             string postHighSchoolEducation,
+             string favoriteSeason,
+             string foodPreference,
+             string favoriteAnimal,
+             string driveInProgramming
+             )
         {
             this.name = name;
             this.civilStatus = civilStatus;
@@ -67,9 +68,14 @@ namespace C_Sharks
         public string FavoriteAnimal { get => favoriteAnimal; set => favoriteAnimal = value; }
         public string DriveInProgramming { get => driveInProgramming; set => driveInProgramming = value; }
 
-        internal static void Sort(Func<object, object, int> p)
+
+        public override string ToString()
         {
-            throw new NotImplementedException();
+
+            return $"{Name}{CivilStatus}{MonthOfBirth}{TypeOfAccomodation}{Age}{FavoriteHobby}{FavoriteCandy}{PostHighSchoolEducation}{FavoriteSeason}{FoodPreference}{FavoriteAnimal}{DriveInProgramming}";
         }
+
+        
+
     }
 }
