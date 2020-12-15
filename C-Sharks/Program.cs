@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Reflection;
 using System.Threading;
 using System.Web;
 
@@ -10,8 +11,8 @@ namespace C_Sharks
 
     class Program
     {
-        private static List<Member> operativeMemberList = MemberList();
-
+        public static List<Member> operativeMemberList = MemberList();
+        
         static void Main(string[] args)
         {
             Console.BackgroundColor = ConsoleColor.Black;
@@ -23,7 +24,7 @@ namespace C_Sharks
         }
         private static void WelcomeMessage()
         {
-            string title = @"
+            string textToEnter = @"
                       _____ _          
                      |_   _| |         
                        | | | |__   ___ 
@@ -46,8 +47,9 @@ namespace C_Sharks
           |  _  | '__/ __| '_ \| \ \ / / _ \/ __|
           | | | | | | (__| | | | |\ V /  __/\__ \
           \_| |_/_|  \___|_| |_|_| \_/ \___||___/
-                                                 ";
-            Console.WriteLine(title);
+                                                 "; ;
+            Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (textToEnter.Length / 2)) + "}", textToEnter));
+            
             
             Console.WriteLine("Press enter to continue...");
             Console.ReadKey();
@@ -87,7 +89,7 @@ namespace C_Sharks
              }
             Console.WriteLine("Correct password!");*/
             WelcomeMessage();
-
+            
             bool isRunning = true;
             while (isRunning)
             {
@@ -154,20 +156,7 @@ namespace C_Sharks
         {
             foreach (var item in operativeMemberList)
             {
-                Console.Write(
-                    $">Name: {item.Name}\n" +
-                    $">Civil status: {item.CivilStatus}\n" +
-                    $">Type of Accomodation: {item.TypeOfAccomodation}\n" +
-                    $">Age: {item.Age}\n" +
-                    $">Favorite hobby: {item.FavoriteHobby}\n" +
-                    $">Favorite candy: {item.FavoriteCandy}\n" +
-                    $">Post High School Education: {item.PostHighSchoolEducation}\n" +
-                    $">Favorite season: {item.FavoriteSeason}\n" +
-                    $">Food preferences: {item.FoodPreference}\n" +
-                    $">Favorite animal: {item.FavoriteAnimal}\n" +
-                    $">Drive in programming: {item.DriveInProgramming}\n" +
-                    "\n\n"
-                    );
+                Console.WriteLine(item.ToString()); 
             }
         }
 
@@ -213,7 +202,7 @@ namespace C_Sharks
             }
 
         }
-        private static void ListSpecificInfo()
+         static void ListSpecificInfo()
         {
             Console.WriteLine($"What information would you like to list?\n\n" +
                 $"[1] Civil status\n\n" +
@@ -229,8 +218,13 @@ namespace C_Sharks
                 $"[11] Drive in programming\n\n");
 
             int menuChoiceOfSpecificInfo = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i < operativeMemberList.Count; i++)
+            {
+                operativeMemberList[i].GetSpecificInfo(menuChoiceOfSpecificInfo);
+            }
 
-            switch (menuChoiceOfSpecificInfo)
+
+            /*switch (menuChoiceOfSpecificInfo)
             {
                 case 1:
                     foreach (var item in operativeMemberList)
@@ -300,7 +294,7 @@ namespace C_Sharks
                     break;
                 default:
                     break;
-            }
+            }*/
         }
         public static List<Member> DeleteMember()
         {
