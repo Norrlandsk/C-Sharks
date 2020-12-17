@@ -69,50 +69,6 @@ namespace C_Sharks
         public string DriveInProgramming { get => driveInProgramming; set => driveInProgramming = value; }
 
 
-        public void GetSpecificInfo(int switchChoice)
-        {
-            
-            switch (switchChoice)
-            {
-
-                case 1:
-                    Console.WriteLine( $"{this.Name}: {this.CivilStatus}");
-                    break;
-                case 2:
-                    Console.WriteLine(  $"{this.Name}: {this.MonthOfBirth}");
-                    break;
-                case 3:
-                    Console.WriteLine($"{this.Name}: {this.TypeOfAccomodation}");
-                    break;
-                case 4:
-                    Console.WriteLine($"{this.Name}: {this.Age}");
-                    break;
-                case 5:
-                    Console.WriteLine($"{this.Name}: {this.FavoriteHobby}");
-                    break;
-                case 6:
-                    Console.WriteLine($"{this.Name}: {this.favoriteCandy}");
-                    break;
-                case 7:
-                    Console.WriteLine($"{this.Name}: {this.PostHighSchoolEducation}");
-                    break;
-                case 8:
-                    Console.WriteLine($"{this.Name}: {this.FavoriteSeason}");
-                    break;
-                case 9:
-                    Console.WriteLine($"{this.Name}: {this.FoodPreference}");
-                    break;
-                case 10:
-                    Console.WriteLine($"{this.Name}: {this.FavoriteAnimal}");
-                    break;
-                case 11:
-                    Console.WriteLine($"{this.Name}: {this.DriveInProgramming}");
-                    break;
-                default:
-                    Console.WriteLine("Invalid input!");
-                    break;
-            }
-        }
 
         
 

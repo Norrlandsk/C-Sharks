@@ -10,15 +10,15 @@ namespace C_Sharks
 
 
     {
-         public static List<Member> operativeMemberList = Methods.InitMemberList();
-         const int SleepTime = 1200;
-         public static string Title = "The C-Sharks Archives";
+        public static List<Member> operativeMemberList = Methods.InitMemberList();
+        const int SleepTime = 1200;
+        public static string Title = "The C-Sharks Archives\n\n\n";
         //Method for starting up the application
         public static void Setup()
         {
             Console.Title = "The C-Sharks Archives";
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            EnterPassword();
+            //EnterPassword();
             WelcomeMessage();
 
             bool isRunning = true;
@@ -36,41 +36,42 @@ namespace C_Sharks
                     "[5] Delete member from list\n" +
                     "[6] Quit The C-Sharks Archives"
                     );
-                string menuChoice = Console.ReadLine();
-                switch (menuChoice)
+
+                int allowedRange = 6;
+                int RootMenuChoice = ConfirmCorrectInput(6);
+                EraseAndContinueWithoutWait();
+
+                switch (RootMenuChoice)
                 {
-                    case "1":
+                    case 1:
 
                         Methods.ListAllMembersWithComma();
                         break;
-                    case "2":
+                    case 2:
 
                         Methods.ListAllMemberInfo();
                         break;
-                    case "3":
+                    case 3:
 
                         Methods.SpecificMemberInfo();
 
                         break;
-                    case "4":
+                    case 4:
 
                         Methods.ListSpecificInfo();
                         break;
-                    case "5":
+                    case 5:
 
                         Methods.DeleteMember();
                         break;
-                    case "6":
+                    case 6:
 
                         Console.WriteLine("Shutting down the application...");
                         isRunning = false;
                         break;
-                    default:
-                        Console.WriteLine("Invalid input!");
 
-                        break;
                 }
-                
+
 
 
 
@@ -143,8 +144,8 @@ namespace C_Sharks
         }
         private static void EraseAndContinueWithoutWait()
         {
-           
-            
+
+
             Console.Clear();
             Console.WriteLine(String.Format("{0," + ((Console.WindowWidth / 2) + (Title.Length / 2)) + "}", Title));
         }
@@ -187,15 +188,49 @@ namespace C_Sharks
             {
                 Console.WriteLine($"[{i + 1}] {operativeMemberList[i].Name} ");
             }
-            int menuChoiceSpecificMember = Convert.ToInt32(Console.ReadLine());
-            EraseAndContinueWithoutWait();
-            Console.WriteLine(operativeMemberList[menuChoiceSpecificMember - 1].ToString());
+
+            Console.WriteLine(operativeMemberList[ConfirmCorrectInput(operativeMemberList.Count) - 1].ToString());
             EraseAndContinue();
+
+
+
+
         }
+
+        public static int ConfirmCorrectInput(int allowedRange)
+        {
+            
+                int confirmedChoice;
+            while (true)
+            {
+                string menuChoiceString = Console.ReadLine();
+                bool successfulConversion = Int32.TryParse(menuChoiceString, out confirmedChoice);
+                if (successfulConversion && confirmedChoice <= allowedRange)
+                {
+                    break;
+
+                }
+                else
+                {
+                    Console.Write("\nInvalid input! Try again:");
+
+                }
+
+            }
+            return confirmedChoice;
+        }
+
+
+
+
+
+
         public static void ListSpecificInfo()
         {
             EraseAndContinueWithoutWait();
-            Console.WriteLine($"What information would you like to list?\n\n" +
+            Console.WriteLine
+                (
+                $"What information would you like to list?\n\n" +
                 $"[1] Civil status\n" +
                 $"[2] Month of birth\n" +
                 $"[3] Type of accomodation\n" +
@@ -206,13 +241,85 @@ namespace C_Sharks
                 $"[8] Favorite season\n" +
                 $"[9] Food preferences\n" +
                 $"[10] Favorite animal\n" +
-                $"[11] Drive in programming\n");
+                $"[11] Drive in programming\n"
+                );
 
-            int menuChoiceOfSpecificInfo = Convert.ToInt32(Console.ReadLine());
+            int allowedRange = 11;
+            int menuChoiceOfSpecificInfo = ConfirmCorrectInput(11);
             EraseAndContinueWithoutWait();
-            for (int i = 0; i < operativeMemberList.Count; i++)
+
+            switch (menuChoiceOfSpecificInfo)
             {
-                operativeMemberList[i].GetSpecificInfo(menuChoiceOfSpecificInfo);
+
+                case 1:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.CivilStatus}\n");
+                    }
+                    break;
+                case 2:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.MonthOfBirth}\n");
+                    }
+                    break;
+                case 3:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.TypeOfAccomodation}\n");
+                    }
+                    break;
+                case 4:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.Age}\n");
+                    }
+                    break;
+                case 5:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.FavoriteHobby}\n");
+                    }
+                    break;
+                case 6:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.FavoriteCandy}\n");
+                    }
+                    break;
+                case 7:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.PostHighSchoolEducation}\n");
+                    }
+                    break;
+                case 8:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.FavoriteSeason}\n");
+                    }
+                    break;
+                case 9:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.FoodPreference}\n");
+                    }
+                    break;
+                case 10:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.FavoriteAnimal}\n");
+                    }
+                    break;
+                case 11:
+                    foreach (var item in operativeMemberList)
+                    {
+                        Console.WriteLine($"{item.Name}: {item.DriveInProgramming}\n");
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Invalid input!");
+                    break;
             }
             EraseAndContinue();
         }
@@ -221,17 +328,27 @@ namespace C_Sharks
         public static void DeleteMember()
         {
             EraseAndContinueWithoutWait();
-            Console.WriteLine("Who do you wish to delete? :(\n\n");
+            Console.WriteLine("Who do you wish to remove? (Think carefully, it's irrevocable!)\n\n");
 
             for (int i = 0; i < operativeMemberList.Count; i++)
             {
                 Console.WriteLine($"[{i + 1}] {operativeMemberList[i].Name} ");
             }
-            int menuChoiceDeleteMember = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"[{operativeMemberList.Count + 1}] I changed my mind, I don't want to remove anybody");
 
-            operativeMemberList.RemoveAt(menuChoiceDeleteMember - 1);
-            Console.WriteLine($"{menuChoiceDeleteMember - 1} is deleted");
-            EraseAndContinue();
+            int menuChoiceDeleteMember = ConfirmCorrectInput(operativeMemberList.Count+1);
+
+            if (menuChoiceDeleteMember == operativeMemberList.Count+1)
+            {
+                EraseAndContinue();
+
+            }
+            else
+            {
+                Console.WriteLine($"\n\n{operativeMemberList[menuChoiceDeleteMember - 1].Name} is deleted");
+                operativeMemberList.RemoveAt(menuChoiceDeleteMember - 1);
+                EraseAndContinue();
+            }
         }
         //Method for creating objects for all group members and returning List containing objects
         public static List<Member> InitMemberList()
