@@ -3,7 +3,10 @@
 
 namespace C_Sharks
 {
-    public class Member
+
+
+    //Class for holding all fields/properties used in the application
+    class Member
     {
 
         //Fields
@@ -72,7 +75,7 @@ namespace C_Sharks
 
 
 
-        //Override of Member class ToString() for use when listing all properties
+        //Override of class Member.ToString() for use when listing all properties
         public override string ToString()
         {
 

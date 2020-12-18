@@ -5,26 +5,16 @@
 namespace C_Sharks
 {
 
+
+    //Beautifully empty Program.Main method. Only used for starting the application 
     class Program
     {
        
-        
-       
-        
         static void Main(string[] args)
         {
-          
-            
+                      
             Runtime.Setup();
 
-
         }
-        
-
-
-        
-        
-
-
     }
 }

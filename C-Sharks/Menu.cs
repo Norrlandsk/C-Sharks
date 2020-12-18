@@ -3,7 +3,9 @@
 
 namespace C_Sharks
 {
-    class Menus
+
+    //Collects all menus used in Runtime.Setup()
+    class Menu
     {
 
         //Lists all members, the last one without a comma
@@ -11,8 +13,10 @@ namespace C_Sharks
         {
             Runtime.EraseAndContinueWithoutPrompt();
 
+            //Loops through all objects of operativeMemberList. IF it is the last object, write property Name without comma, ELSE, write Name with comma
             for (int i = 0; i < Runtime.operativeMemberList.Count; i++)
             {
+                
                 if (i == Runtime.operativeMemberList.Count - 1)
                 {
                     Console.Write($"{Runtime.operativeMemberList[i].Name}\n");
@@ -22,7 +26,7 @@ namespace C_Sharks
                     Console.Write($"{Runtime.operativeMemberList[i].Name}, ");
                 }
             }
-            Runtime.EraseAndContinue();
+            Runtime.EraseAndContinueWithPrompt();
         }
 
 
@@ -32,13 +36,14 @@ namespace C_Sharks
         {
             Runtime.EraseAndContinueWithoutPrompt();
 
+            //Loops through all objects in operativeMemberList. Calls class Member.ToString() override to get object's properties
             foreach (var item in Runtime.operativeMemberList)
             {
                 Console.WriteLine(item.ToString());
-                Design.CreateThinBorder();
+                Design.CreateSingleBorder();
             }
 
-            Runtime.EraseAndContinue();
+            Runtime.EraseAndContinueWithPrompt();
         }
 
 
@@ -47,17 +52,22 @@ namespace C_Sharks
         public static void SpecificMemberInfo()
         {
             Runtime.EraseAndContinueWithoutPrompt();
-            Design.CreateBorder();
+            Design.CreateDoubleBorder();
+
+           
             Console.WriteLine("Which member would you like to know more about?\n\n");
             int i;
+
+            //Loops through all objects in operativeMemberList, using iterator variable in FOR-loop to number objects, creating a dynamic menu depending on how many objects in list
             for (i = 0; i < Runtime.operativeMemberList.Count; i++)
             {
                 Console.WriteLine($"[{i + 1}] {Runtime.operativeMemberList[i].Name} ");
             }
-            Design.CreateBorder();
+            Design.CreateDoubleBorder();
 
+            //Prints properties of object chosen by user, calling ConfirmCorrectInput() for prompt to make sure chosen number is 1. Not out of range of List, and 2. Is is a number.
             Console.WriteLine(Runtime.operativeMemberList[Runtime.ConfirmCorrectInput(Runtime.operativeMemberList.Count) - 1].ToString());
-            Runtime.EraseAndContinue();
+            Runtime.EraseAndContinueWithPrompt();
 
 
 
@@ -70,7 +80,9 @@ namespace C_Sharks
         public static void ListSpecificInfo()
         {
             Runtime.EraseAndContinueWithoutPrompt();
-            Design.CreateBorder();
+            Design.CreateDoubleBorder();
+
+            //Lists all properties of class Member
             Console.WriteLine
                 (
                 $"What information would you like to list?\n\n" +
@@ -86,12 +98,13 @@ namespace C_Sharks
                 $"[10] Favorite animal\n" +
                 $"[11] Drive in programming"
                 );
-            Design.CreateBorder();
+            Design.CreateDoubleBorder();
 
+            //User prompt with ConfirmCorrectInput to ensure user gives valid input
             int menuChoiceOfSpecificInfo = Runtime.ConfirmCorrectInput(11);
             Runtime.EraseAndContinueWithoutPrompt();
 
-
+            //Prints the chosen property of all member objects in operativeMemberList
             switch (menuChoiceOfSpecificInfo)
             {
 
@@ -168,7 +181,7 @@ namespace C_Sharks
             }
 
 
-            Runtime.EraseAndContinue();
+            Runtime.EraseAndContinueWithPrompt();
         }
 
 
@@ -177,29 +190,36 @@ namespace C_Sharks
         public static void DeleteMember()
         {
             Runtime.EraseAndContinueWithoutPrompt();
-            Design.CreateBorder();
-            Console.WriteLine("Who do you wish to remove? (Think carefully, it's irrevocable!)\n\n");
+            Design.CreateDoubleBorder();
+            Console.WriteLine("Who do you want to remove? (Think carefully, it's irrevocable!)\n\n");
 
+            //Loops through all objects in operativeMemberList, using iterator variable in FOR-loop to number objects, creating a dynamic menu depending on how many objects in list
             for (int i = 0; i < Runtime.operativeMemberList.Count; i++)
             {
                 Console.WriteLine($"[{i + 1}] {Runtime.operativeMemberList[i].Name} ");
             }
+
+            //Last menu item is always a choice of not removing an object from operativeMemberList
             Console.WriteLine($"[{Runtime.operativeMemberList.Count + 1}] I changed my mind, I don't want to remove anybody");
-            Design.CreateBorder();
+            Design.CreateDoubleBorder();
 
             int menuChoiceDeleteMember = Runtime.ConfirmCorrectInput(Runtime.operativeMemberList.Count + 1);
+
+            //IF user chooses to not remove anybody
             if (menuChoiceDeleteMember == Runtime.operativeMemberList.Count + 1)
             {
                 Console.WriteLine("Nobody was removed");
-                Runtime.EraseAndContinue();
+                Runtime.EraseAndContinueWithPrompt();
 
             }
+
+            //ELSE if user chooses to remove somebody
             else
             {
                 Console.WriteLine($"\n\n{Runtime.operativeMemberList[menuChoiceDeleteMember - 1].Name} is removed");
                 Runtime.operativeMemberList.RemoveAt(menuChoiceDeleteMember - 1);
 
-                Runtime.EraseAndContinue();
+                Runtime.EraseAndContinueWithPrompt();
             }
         }
 

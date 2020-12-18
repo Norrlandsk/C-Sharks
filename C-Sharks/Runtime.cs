@@ -4,6 +4,8 @@ using System.Threading;
 
 namespace C_Sharks
 {
+
+    //Collects all methods regarding program flow; setting up the application, password handling, error handling, etc
     class Runtime
     {
 
@@ -16,8 +18,7 @@ namespace C_Sharks
         //Starts the application in Program.Main and gives user access to the root menu
         public static void Setup()
         {
-            Console.Title = "The C-Sharks Archives";
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Design.ConsoleDesign();
             EnterPassword();
             Design.TitleScreen();
 
@@ -25,7 +26,7 @@ namespace C_Sharks
             while (isRunning)
             {
                 EraseAndContinueWithoutPrompt();
-                Design.CreateBorder();
+                Design.CreateDoubleBorder();
                 Console.WriteLine
                     (
                     $"What would you like to do now?\n\n" +
@@ -36,33 +37,35 @@ namespace C_Sharks
                     $"[5] Delete member from list\n" +
                     $"[6] Quit The C-Sharks Archives"
                     );
-                Design.CreateBorder();
+                Design.CreateDoubleBorder();
 
+                //User prompt with ConfirmCorrectInput() to ensure valid input from user
                 int RootMenuChoice = ConfirmCorrectInput(6);
                 EraseAndContinueWithoutPrompt();
+
 
                 switch (RootMenuChoice)
                 {
                     case 1:
 
-                        Menus.ListAllMembersWithComma();
+                        Menu.ListAllMembersWithComma();
                         break;
                     case 2:
 
-                        Menus.ListAllMemberInfo();
+                        Menu.ListAllMemberInfo();
                         break;
                     case 3:
 
-                        Menus.SpecificMemberInfo();
+                        Menu.SpecificMemberInfo();
 
                         break;
                     case 4:
 
-                        Menus.ListSpecificInfo();
+                        Menu.ListSpecificInfo();
                         break;
                     case 5:
 
-                        Menus.DeleteMember();
+                        Menu.DeleteMember();
                         break;
                     case 6:
 
@@ -111,8 +114,9 @@ namespace C_Sharks
 
         //A method for changing between screens by pushing Enter
         //Clears the console window, and sets the title on top and center of the console window, and prompts user to push Enter to continue
-        public static void EraseAndContinue()
+        public static void EraseAndContinueWithPrompt()
         {
+
             Console.WriteLine("\n\nPress enter to continue...");
             Console.Read();
             Console.Clear();
@@ -140,19 +144,28 @@ namespace C_Sharks
             int confirmedChoice;
             do
             {
+                //User prompt
                 string menuChoiceString = Console.ReadLine();
+
+                
                 bool successfulConversion = Int32.TryParse(menuChoiceString, out confirmedChoice);
+
+                //IF TryParse() successfully parses menuChoiceString, AND the variable is within allowed range of the menu in question: break out of DO WHILE loop and RETURN confirmedChoice
                 if (successfulConversion && confirmedChoice <= allowedRange)
                 {
 
                     EraseAndContinueWithoutPrompt();
                     break;
                 }
+
+                //ELSE IF user previously pressed Enter (in the case of changing screens with EraseAndContinue() method). This ensures that ELSE case is not entered unwanted
                 else if (menuChoiceString == "")
                 {
                     EraseAndContinueWithoutPrompt();
                     break;
                 }
+
+                //ELSE if user input is either out of range of menu or not a number, continue DO WHILE loop 
                 else
                 {
 
@@ -170,6 +183,8 @@ namespace C_Sharks
         //Creates objects for all group members and returns List containing the objects
         public static List<Member> InitMemberList()
         {
+
+            //Instancing all wanted objects of class Member with constructor 
             Member Tove = new Member(
                "Tove Seger",
                "Gift",
@@ -284,8 +299,12 @@ namespace C_Sharks
                   "Hund",
                   "Fascineras av hur något så enkelt men samtidigt komplicerat kan skapa något kraftfullt och användbart. Vidare så är programmering oerhört utmanande, spännande och framförallt roligt!"
                   );
+
+            //Create memberList and add all objects of class Member
             List<Member> memberList = new List<Member>() { Tove, Oskar, Elias, Viktor, Johan, Christopher, Robert, Fisnik };
 
+
+            //Sorting memberList alphabetically after property Name with Sort() method  
             memberList.Sort((x, y) => x.Name.CompareTo(y.Name));
 
             return memberList;

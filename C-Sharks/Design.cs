@@ -3,11 +3,23 @@ using System.Threading;
 
 namespace C_Sharks
 {
+
+
+    //Collects all design and layout methods
     class Design
     {
 
-        //Sets the title of the console window
+        //Sets the header inside the console window for use in EraseAndContinueWithPrompt() and EraseAndContinueWithoutPrompt() methods in class Runtime
         public static string Title = "The C-Sharks Archives\n\n\n";
+
+
+
+        //Customises the console window
+        public static void ConsoleDesign()
+        { 
+            Console.Title = "The C-Sharks Archives";
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+        }
 
 
 
@@ -44,8 +56,8 @@ namespace C_Sharks
 
 
 
-        //Creates a console window-wide border of single dots
-        public static void CreateThinBorder()
+        //Creates a console window-wide border of single dots dynamically to the width of the console window
+        public static void CreateSingleBorder()
         {
             for (int i = 0; i < Console.WindowWidth; i++)
             {
@@ -55,8 +67,8 @@ namespace C_Sharks
 
 
 
-        //Creates a console window-wide border of double dots
-        public static void CreateBorder()
+        //Creates a console window-wide border of double dots dynamically to the width of the console window
+        public static void CreateDoubleBorder()
         {
             for (int i = 0; i < Console.WindowWidth; i++)
             {
