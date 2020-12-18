@@ -6,7 +6,7 @@ namespace C_Sharks
 {
 
 
-    //Beautifully empty Program.Main method. Only used for starting the application 
+    //Beautifully empty Main() method. Only used for starting the application 
     class Program
     {
        

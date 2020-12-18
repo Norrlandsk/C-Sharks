@@ -216,7 +216,7 @@ namespace C_Sharks
             //ELSE if user chooses to remove somebody
             else
             {
-                Console.WriteLine($"\n\n{Runtime.operativeMemberList[menuChoiceDeleteMember - 1].Name} is removed");
+                Console.WriteLine($"\n\n{Runtime.operativeMemberList[menuChoiceDeleteMember - 1].Name} was removed");
                 Runtime.operativeMemberList.RemoveAt(menuChoiceDeleteMember - 1);
 
                 Runtime.EraseAndContinueWithPrompt();
