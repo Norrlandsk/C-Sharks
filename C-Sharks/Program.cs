@@ -15,7 +15,7 @@ namespace C_Sharks
         {
           
             
-            Methods.Setup();
+            Runtime.Setup();
 
 
         }

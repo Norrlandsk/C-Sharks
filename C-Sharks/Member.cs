@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+
 
 namespace C_Sharks
 {
@@ -54,39 +53,41 @@ namespace C_Sharks
 
         }
 
+
+
         //Properties
-        public string Name { get => name; set => name = value; }
-        public string CivilStatus { get => civilStatus; set => civilStatus = value; }
-        public string MonthOfBirth { get => monthOfBirth; set => monthOfBirth = value; }
-        public string TypeOfAccomodation { get => typeOfAccomodation; set => typeOfAccomodation = value; }
-        public int Age { get => age; set => age = value; }
-        public string FavoriteHobby { get => favoriteHobby; set => favoriteHobby = value; }
-        public string FavoriteCandy { get => favoriteCandy; set => favoriteCandy = value; }
-        public string PostHighSchoolEducation { get => postHighSchoolEducation; set => postHighSchoolEducation = value; }
-        public string FavoriteSeason { get => favoriteSeason; set => favoriteSeason = value; }
-        public string FoodPreference { get => foodPreference; set => foodPreference = value; }
-        public string FavoriteAnimal { get => favoriteAnimal; set => favoriteAnimal = value; }
-        public string DriveInProgramming { get => driveInProgramming; set => driveInProgramming = value; }
+        public string Name { get => name; }
+        public string CivilStatus { get => civilStatus; }
+        public string MonthOfBirth { get => monthOfBirth; }
+        public string TypeOfAccomodation { get => typeOfAccomodation; }
+        public int Age { get => age; }
+        public string FavoriteHobby { get => favoriteHobby; }
+        public string FavoriteCandy { get => favoriteCandy; }
+        public string PostHighSchoolEducation { get => postHighSchoolEducation; }
+        public string FavoriteSeason { get => favoriteSeason; }
+        public string FoodPreference { get => foodPreference; }
+        public string FavoriteAnimal { get => favoriteAnimal; }
+        public string DriveInProgramming { get => driveInProgramming; }
 
 
 
-        
 
+        //Override of Member class ToString() for use when listing all properties
         public override string ToString()
         {
 
             return
-                    $">Name: {Name}\n" +
-                    $">Civil status: {CivilStatus}\n" +
-                    $">Type of Accomodation: {TypeOfAccomodation}\n" +
-                    $">Age: {Age}\n" +
-                    $">Favorite hobby: {FavoriteHobby}\n" +
-                    $">Favorite candy: {FavoriteCandy}\n" +
-                    $">Post High School Education: {PostHighSchoolEducation}\n" +
-                    $">Favorite season: {FavoriteSeason}\n" +
-                    $">Food preferences: {FoodPreference}\n" +
-                    $">Favorite animal: {FavoriteAnimal}\n" +
-                    $">Drive in programming: {DriveInProgramming}\n\n";
+                    $"Name: {Name}\n" +
+                    $"Civil status: {CivilStatus}\n" +
+                    $"Type of Accomodation: {TypeOfAccomodation}\n" +
+                    $"Age: {Age}\n" +
+                    $"Favorite hobby: {FavoriteHobby}\n" +
+                    $"Favorite candy: {FavoriteCandy}\n" +
+                    $"Post High School Education: {PostHighSchoolEducation}\n" +
+                    $"Favorite season: {FavoriteSeason}\n" +
+                    $"Food preferences: {FoodPreference}\n" +
+                    $"Favorite animal: {FavoriteAnimal}\n" +
+                    $"Drive in programming: {DriveInProgramming}\n\n";
         }
 
 
